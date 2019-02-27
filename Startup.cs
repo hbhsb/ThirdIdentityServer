@@ -44,7 +44,6 @@ namespace QuickstartIdentityServer
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers());
-            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

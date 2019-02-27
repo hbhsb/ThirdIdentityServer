@@ -51,14 +51,15 @@ namespace QuickstartIdentityServer
                 new Client
                 {
                     ClientId = "ZnwqE8j-H6kmHeQBM3NH2WbdikUjPrNV",
-                    ClientName = "MVC Client",
+                    ClientName = "合同认证系统",
                     AllowedGrantTypes = GrantTypes.Code,
                     ClientSecrets =
                     {
                         new Secret("jecyL0PrTIxjNf4GUbz0oa_ssRLiJBG8OXfIMzLDjGCEoTV48HHqvK2pasPodPyN".Sha256())
                     },
-
-                    RedirectUris = { "http://192.168.0.158:8091/callback" },
+                    FrontChannelLogoutUri = "http://192.168.0.158:8091/account/logout",
+                    FrontChannelLogoutSessionRequired = false,
+                    RedirectUris = { "http://192.168.0.158:8091/callback" ,"http://localhost:5000/callback"},
                     PostLogoutRedirectUris = { "http://localhost:3000/" },
 
                     AllowedScopes =
@@ -70,31 +71,31 @@ namespace QuickstartIdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                     }
                 },
-                new Client
-                {
-                    ClientId = "SYGtG8b4HcWBICHxkw63173ohARZoaO8",
-                    ClientName = "MVC Client2",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    ClientSecrets =
-                    {
-                        new Secret("BPptSgcAhYxUYIIPSbr5SDHG4-Gq8TrP2qsVc44j4YmNqmm-nuc2Ld3heyJQoMmB".Sha256())
-                    },
+                //new Client
+                //{
+                //    ClientId = "SYGtG8b4HcWBICHxkw63173ohARZoaO8",
+                //    ClientName = "MVC Client2",
+                //    AllowedGrantTypes = GrantTypes.Code,
+                //    ClientSecrets =
+                //    {
+                //        new Secret("BPptSgcAhYxUYIIPSbr5SDHG4-Gq8TrP2qsVc44j4YmNqmm-nuc2Ld3heyJQoMmB".Sha256())
+                //    },
 
-                    RedirectUris = { "http://localhost:3000/callback" },
-                    PostLogoutRedirectUris = { "http://localhost:3000/" },
+                //    RedirectUris = { "http://localhost:3000/callback" },
+                //    PostLogoutRedirectUris = { "http://localhost:3000/" },
 
-                    AllowedScopes =
-                    {
-                        "https://quickstarts/api",
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        "nationality"
-                    }
-                },
+                //    AllowedScopes =
+                //    {
+                //        "https://quickstarts/api",
+                //        IdentityServerConstants.StandardScopes.Profile,
+                //        IdentityServerConstants.StandardScopes.OpenId,
+                //        "nationality"
+                //    }
+                //},
                 new Client
                 {
                     ClientId = "ThirdWebAppId",
-                    ClientName = "ThirdWebApp",
+                    ClientName = "OA应用",
                     AllowedGrantTypes = GrantTypes.Code,
                     ClientSecrets =
                     {
@@ -102,7 +103,7 @@ namespace QuickstartIdentityServer
                     },
                     FrontChannelLogoutUri = "http://192.168.0.158:10112/account/logout",
                     FrontChannelLogoutSessionRequired = false,
-                    RedirectUris = { "http://192.168.0.158:10112/callback" },
+                    RedirectUris = { "http://localhost:7001/callback","http://127.0.0.1:7001/callback" },
                     PostLogoutRedirectUris = { "http://localhost:3000/" },
 
                     AllowedScopes =
@@ -135,40 +136,6 @@ namespace QuickstartIdentityServer
                         "nationality"
                     }
                 },
-                new Client
-                {
-                    ClientId = "js",
-                    ClientName = "JavaScript Client",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    RequireClientSecret = false,
-
-                    RedirectUris =           { "http://localhost:3000/callback.html" },
-                    PostLogoutRedirectUris = { "http://localhost:3000/index.html" },
-                    AllowedCorsOrigins =     { "http://localhost:3000" },
-
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "https://quickstarts/api"
-                    }
-                },
-                new Client
-                {
-                    ClientId = "mvc2",
-                    ClientName = "MVC Client2",
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-
-                    RedirectUris = { "http://localhost:5004/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:5004/signout-callback-oidc" },
-
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
-                    }
-                }
             };
         }
 
