@@ -45,30 +45,8 @@ namespace QuickstartIdentityServer
             // client credentials client
             return new List<Client>
             {
-                new Client
-                {
-                    ClientId = "client",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api1" }
-                },
-
-                // resource owner password grant client
-                new Client
-                {
-                    ClientId = "ro.client",
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api1" }
-                },
+                
+                
                 // OpenID Connect implicit flow client (MVC)
                 new Client
                 {
@@ -80,11 +58,14 @@ namespace QuickstartIdentityServer
                         new Secret("jecyL0PrTIxjNf4GUbz0oa_ssRLiJBG8OXfIMzLDjGCEoTV48HHqvK2pasPodPyN".Sha256())
                     },
 
-                    RedirectUris = { "http://192.168.0.174:3000/callback" },
+                    RedirectUris = { "http://192.168.0.158:8091/callback" },
                     PostLogoutRedirectUris = { "http://localhost:3000/" },
 
                     AllowedScopes =
                     {
+                        "https://quickstarts/api",
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "nationality",
                         "https://quickstarts/api",
                         IdentityServerConstants.StandardScopes.OpenId,
                     }
@@ -112,6 +93,29 @@ namespace QuickstartIdentityServer
                 },
                 new Client
                 {
+                    ClientId = "ThirdWebAppId",
+                    ClientName = "ThirdWebApp",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    ClientSecrets =
+                    {
+                        new Secret("ThirdWebAppPsd".Sha256())
+                    },
+                    FrontChannelLogoutUri = "http://192.168.0.158:10112/account/logout",
+                    FrontChannelLogoutSessionRequired = false,
+                    RedirectUris = { "http://192.168.0.158:10112/callback" },
+                    PostLogoutRedirectUris = { "http://localhost:3000/" },
+
+                    AllowedScopes =
+                    {
+                        "https://quickstarts/api",
+                        "java/api",
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        "nationality"
+                    }
+                },
+                new Client
+                {
                     ClientId = "123",
                     ClientName = "456",
                     AllowedGrantTypes = GrantTypes.Code,
@@ -120,8 +124,8 @@ namespace QuickstartIdentityServer
                         new Secret("456".Sha256())
                     },
 
-                    RedirectUris = { "http://localhost:5000/callback" },
-                    PostLogoutRedirectUris = { "http://localhost:5000/" },
+                    RedirectUris = { "http://192.168.0.158:8091/callback" },
+                    PostLogoutRedirectUris = { "http://192.168.0.158:8196" },
 
                     AllowedScopes =
                     {
@@ -175,7 +179,7 @@ namespace QuickstartIdentityServer
                 new TestUser
                 {
                     SubjectId = "1",
-                    Username = "alice",
+                    Username = "alice1",
                     Password = "password",
 
                     Claims = new List<Claim>
@@ -187,13 +191,13 @@ namespace QuickstartIdentityServer
                 new TestUser
                 {
                     SubjectId = "3",
-                    Username = "bob",
-                    Password = "password",
+                    Username = "bob1",
+                    Password = "bob",
 
                     Claims = new List<Claim>
                     {
                         new Claim("ID","123"),
-                        new Claim("name", "Bob"),
+                        new Claim("name", "Bob1"),
                         new Claim("website", "https://bob.com"),
                         new Claim("综上所述","fuck"),
                         new Claim("nationality","美国")
